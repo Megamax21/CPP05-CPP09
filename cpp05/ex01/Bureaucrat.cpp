@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:25:59 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/04/29 16:29:49 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,10 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 	std::cout << "A Bureaucrat '"<< name <<" (" << grade << ")' was created" << std::endl;
 }
 
+Bureaucrat::~Bureaucrat() { std::cout << "A Bureaucrat was destroyed" << std::endl; }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
 	os << obj.get_name() << ", bureaucrat grade " << obj.get_grade();
 	return os;
 }
-
-Bureaucrat::~Bureaucrat() { std::cout << "A Bureaucrat was destroyed" << std::endl; }

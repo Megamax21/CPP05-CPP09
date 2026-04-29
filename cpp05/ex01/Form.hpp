@@ -1,46 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:31:14 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/04/29 16:53:12 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+#define FORM_HPP
 
-#include <string>
-#include <iostream>
-#include <exception>
+#include "Bureaucrat.hpp"
 
-class Bureaucrat
+class Form
 {
 private:
-	const	std::string name;
-	int		grade;
+	const std::string	name;
+	const int			sign_grade;
+	const int			exec_grade;
+	bool				is_signed;
 public:
-	Bureaucrat();
-	Bureaucrat(std::string name, int grade); // Constructor
-	~Bureaucrat(); // Destructor
-	Bureaucrat& operator=(const Bureaucrat& other); // Copy assignment operator overload
-	Bureaucrat(const Bureaucrat& other); // Copy Constructor
+	Form();
+	Form(std::string name, int exec_grade, int sign_grade); // Constructor
+	~Form(); // Destructor
+	Form& operator=(const Form& other); // Copy assignment operator overload
+	Form(const Form& other); // Copy Constructor
 
-	void		decr_grade();
-	void		incr_grade();
-	int			get_grade() const;
+	/* GETTERS */
+	int			get_sign_grade() const;
+	int			get_exec_grade() const;
 	std::string	get_name() const;
+	bool		get_is_signed() const;
 
-	// Exception classes
+	/* CLASS METHODS */
+	void	beSigned(Bureaucrat bureaucrat);
+
+	/* EXCEPTIONS */
 	class GradeTooHighException: public std::exception
 	{
 		public :
 		virtual const char* what() const throw()
 		{
-			return "Grade too high !";
+			return "Form grade too high !";
 		}
 	} GradeTooHigh;
 
@@ -49,11 +53,11 @@ public:
 		public :
 		virtual const char* what() const throw()
 		{
-			return "Grade too low !";
+			return "Form grade too low !";
 		}
 	} GradeTooLow;
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
+std::ostream& operator<<(std::ostream& os, const Form& obj);
 
 #endif
