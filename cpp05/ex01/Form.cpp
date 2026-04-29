@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:30:19 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:59:56 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/04/29 18:11:43 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			Form::get_exec_grade() const
 	return (this->exec_grade);
 }
 
-std::string	Form::get_name() const
+std::string const &	Form::get_name() const
 {
 	return (this->name);
 }

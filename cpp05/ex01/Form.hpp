@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:53:12 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/04/29 18:11:19 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ public:
 	/* GETTERS */
 	int			get_sign_grade() const;
 	int			get_exec_grade() const;
-	std::string	get_name() const;
+	std::string const &	get_name() const;
 	bool		get_is_signed() const;
 
 	/* CLASS METHODS */
