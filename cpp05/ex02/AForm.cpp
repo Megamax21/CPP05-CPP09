@@ -35,8 +35,26 @@ bool		AForm::get_is_signed() const
 AForm::AForm()
 	: name("Generic AForm name"), sign_grade(150), exec_grade(150), is_signed(false)
 {
-	std::cout << "AForm constructor called" << std::endl;
+	if (sign_grade < exec_grade)
+	{
+		std::cout << "Sign grade is higher than Exec grade !" << std::endl;
+		throw (this->GradeTooHigh);
+	}
+	if (sign_grade > 150 || exec_grade > 150)
+	{
+		std::cout << "Grade shouldn't be lower than 150 !" << std::endl;
+		throw (this->GradeTooLow);
+	}
+	
+	if (sign_grade <= 0 || exec_grade <= 0)
+	{
+		std::cout << "Grade shouldn't be higher than 1 !" << std::endl; 
+		throw (this->GradeTooHigh);
+	}
+	std::cout << "AForm constructor called : " << name << "\nsign_grade :"<<sign_grade<<
+			" | exec_grade :"<<exec_grade<<"\nsigned : " << is_signed << std::endl;
 }
+
 AForm::AForm(std::string name, int exec_grade, int sign_grade)
 	: name(name), sign_grade(sign_grade), exec_grade(exec_grade), is_signed(false)
 {
@@ -61,17 +79,18 @@ AForm::AForm(const AForm& other) :
 	std::cout << "AForm Copy constructor called" << std::endl;
 } // Copy Constructor
 
-void	AForm::beSigned(Bureaucrat bureaucrat)
+void	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.get_grade() > this->sign_grade)
 	{
-		std::cout <<  bureaucrat << " couldn't sign " << *this << "because their grade is too low !" << std::endl;
-		throw (GradeTooLow);
+		std::cout << "Bureaucrat " << bureaucrat.get_name() <<
+			" couldn't sign AForm " << this->name << " because their grade is too low !" << std::endl;
+		throw (bureaucrat.GradeTooLow);
 	}
 	else
 	{
 		this->is_signed = true;
-		std::cout << bureaucrat << " signed " << *this << std::endl;
+		std::cout << bureaucrat << " signed " << this->name << std::endl;
 	}
 }
 
@@ -85,4 +104,14 @@ std::ostream& operator<<(std::ostream& os, const AForm& obj)
 	else
 		os << "it is not signed.";
 	return os;
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
+{
+	return "AForm : Grade too high !";
+}
+
+const char* AForm::GradeTooLowException::what() const throw()
+{
+	return "AForm : Grade too low !";
 }

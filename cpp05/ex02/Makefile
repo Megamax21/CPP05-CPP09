@@ -6,15 +6,11 @@ CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
 SRCS =	main.cpp \
 		Bureaucrat.cpp \
 		AForm.cpp \
-		PresidentialPardonForm.cpp \
-		RobotomyRequestForm.cpp \
-		ShrubberyCreationForm.cpp
+		PresidentialPardonForm.cpp
 
 HEADERS = Bureaucrat.hpp \
 			AForm.hpp \
-			PresidentialPardonForm.hpp \
-			RobotomyRequestForm.hpp \
-			ShrubberyCreationForm.hpp
+			PresidentialPardonForm.hpp 
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:31:14 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 15:09:44 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,13 @@ public:
 	class GradeTooHighException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "Grade too high !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooHigh;
 
 	class GradeTooLowException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "Grade too low !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooLow;
 };
 

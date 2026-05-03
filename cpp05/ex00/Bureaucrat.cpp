@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:25:59 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 15:09:59 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,13 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 }
 
 Bureaucrat::~Bureaucrat() { std::cout << "A Bureaucrat was destroyed" << std::endl; }
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Bureaucrat : Grade too low !";
+};
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Bureaucrat : Grade too high !";
+}

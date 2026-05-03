@@ -6,11 +6,12 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:29:49 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 15:16:53 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.get_name()), grade(other.get_grade())
 {
@@ -72,4 +73,21 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
 	os << obj.get_name() << ", bureaucrat grade " << obj.get_grade();
 	return os;
+}
+
+
+void	Bureaucrat::sign_form(Form &form)
+{
+	std::cout << this->get_name() << " wants to sign " << (&form)->get_name() << "." << std::endl; 
+	form.beSigned(*this);
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Bureaucrat : Grade too low !";
+};
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Bureaucrat : Grade too high !";
 }

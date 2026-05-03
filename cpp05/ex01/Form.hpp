@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 18:11:19 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 15:11:53 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,19 @@ public:
 	bool		get_is_signed() const;
 
 	/* CLASS METHODS */
-	void	beSigned(Bureaucrat bureaucrat);
+	void	beSigned(const Bureaucrat& bureaucrat);
 
 	/* EXCEPTIONS */
 	class GradeTooHighException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "Form grade too high !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooHigh;
 
 	class GradeTooLowException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "Form grade too low !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooLow;
 };
 

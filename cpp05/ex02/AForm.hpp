@@ -14,7 +14,6 @@
 #define AForm_HPP
 
 #include "Bureaucrat.hpp"
-
 class AForm
 {
 private:
@@ -25,38 +24,32 @@ private:
 protected:
 	AForm();
 	AForm(std::string name, int exec_grade, int sign_grade); // Constructor
+	AForm(const AForm& other); // Copy Constructor
 public:
 	virtual ~AForm(); // Destructor
 	AForm& operator=(const AForm& other); // Copy assignment operator overload
-	AForm(const AForm& other); // Copy Constructor
 
 	/* GETTERS */
-	virtual int			get_sign_grade() const;
-	virtual int			get_exec_grade() const;
-	virtual std::string const &	get_name() const;
-	virtual bool		get_is_signed() const;
+	int			get_sign_grade() const;
+	int			get_exec_grade() const;
+	std::string const &	get_name() const;
+	bool		get_is_signed() const;
 
 	/* CLASS METHODS */
-	virtual void	beSigned(Bureaucrat bureaucrat);
-	virtual void	execute(const Bureaucrat& executor) const = 0;	// Pure virtual function
+	void			beSigned(const Bureaucrat& bureaucrat);
+	virtual void	execute(Bureaucrat const & executor) = 0;
 
 	/* EXCEPTIONS */
 	class GradeTooHighException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "AForm grade too high !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooHigh;
 
 	class GradeTooLowException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "AForm grade too low !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooLow;
 };
 

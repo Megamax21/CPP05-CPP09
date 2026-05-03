@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 16:31:29 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 15:10:11 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <string>
 #include <iostream>
 #include <exception>
+
+class Form;
 
 class Bureaucrat
 {
@@ -34,23 +36,19 @@ public:
 	int			get_grade() const;
 	std::string	get_name() const;
 
+	void		sign_form(Form &form);
+
 	// Exception classes
 	class GradeTooHighException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "Grade too high !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooHigh;
 
 	class GradeTooLowException: public std::exception
 	{
 		public :
-		virtual const char* what() const throw()
-		{
-			return "Grade too low !";
-		}
+		virtual const char* what() const throw();
 	} GradeTooLow;
 };
 

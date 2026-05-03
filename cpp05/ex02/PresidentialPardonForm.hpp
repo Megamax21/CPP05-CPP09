@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 13:45:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/01 16:28:19 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 17:28:29 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 class PresidentialPardonForm : public AForm
 {
 private:
-	std::string target;
-
+	const std::string target;
 public:
 	PresidentialPardonForm();
 	PresidentialPardonForm(std::string target);
 	PresidentialPardonForm(const PresidentialPardonForm& other);
-	virtual ~PresidentialPardonForm();
+	~PresidentialPardonForm();
 	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
-	virtual void execute(const Bureaucrat& executor) const;
-	std::string const & getTarget() const;
+	std::string	get_target() const;
+	
+	void execute(Bureaucrat const & executor);
 };
 
 #endif

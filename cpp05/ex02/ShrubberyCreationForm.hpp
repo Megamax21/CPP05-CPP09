@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 13:45:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/01 16:28:19 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 16:38:16 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 
 class ShrubberyCreationForm : public AForm
 {
-private:
-	std::string target;
-
 public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(std::string target);
@@ -28,7 +25,6 @@ public:
 	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 
 	virtual void execute(const Bureaucrat& executor) const;
-	std::string const & getTarget() const;
 };
 
 #endif

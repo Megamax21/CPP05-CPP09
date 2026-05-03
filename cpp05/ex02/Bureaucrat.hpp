@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/01 16:31:16 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 16:29:13 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ public:
 	int			get_grade() const;
 	std::string	get_name() const;
 	void		signForm(AForm& form);
-	void		executeForm(const AForm& form);
+	void		executeForm(AForm& form);
 
 	// Exception classes
 	class GradeTooHighException: public std::exception

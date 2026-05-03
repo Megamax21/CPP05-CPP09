@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/01 16:31:16 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 17:19:31 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,16 @@ void Bureaucrat::signForm(AForm& form)
 	}
 }
 
-void Bureaucrat::executeForm(const AForm& form)
+void Bureaucrat::executeForm(AForm& form)
 {
 	try
 	{
-		form.execute(*this);
+		if (form.get_is_signed())
+			form.execute(*this);
+		else
+		{
+			std::cout << "Can't execute a Form that wasn't signed !";
+		}
 	}
 	catch (const std::exception& e)
 	{

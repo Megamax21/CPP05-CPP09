@@ -6,52 +6,60 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 13:45:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/01 16:29:18 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 17:41:17 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm()
-	: AForm("Presidential Pardon", 25, 5), target("Unknown")
+PresidentialPardonForm::PresidentialPardonForm() : 
+	AForm("Presidential Pardon Form", 5, 25), target("Generic Target Name")
 {
-	std::cout << "PresidentialPardonForm default constructor called" << std::endl;
+	std::cout << "Presidential Pardon Form Constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target)
-	: AForm("Presidential Pardon", 25, 5), target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) :
+	AForm("Presidential Pardon Form", 5, 25), target(target)
 {
-	std::cout << "PresidentialPardonForm constructor called for target: " << target << std::endl;
+	std::cout << "Presidential Pardon Form Constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
-	: AForm(other), target(other.target)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) :
+	AForm(other)
 {
-	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
+	std::cout << "Presidential Pardon Form Copy Constructor called" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "PresidentialPardonForm destructor called" << std::endl;
+	std::cout << "Presidential Pardon Form Destructor called" << std::endl;
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
 	(void)other;
-	std::cout << "PresidentialPardonForm copy assignment called" << std::endl;
+	std::cout << "Presidential Pardon Form Copy Assignment called" << std::endl;
 	return (*this);
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat& executor) const
+void PresidentialPardonForm::execute(Bureaucrat const & executor)
 {
-	if (executor.get_grade() > this->get_exec_grade())
-	{
-		throw AForm::GradeTooLow;
+	if (this->get_is_signed())
+	{		
+		if (executor.get_grade() > this->get_exec_grade())
+		{
+			std::cout << "Executor's grade is too low" << std::endl;
+			throw (GradeTooLow);
+		}
+		std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl ;
 	}
-	std::cout << executor.get_name() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	else
+	{
+		std::cout << "Can't execute an unsigned Form !" << std::endl;
+	}
 }
 
-std::string const & PresidentialPardonForm::getTarget() const
+std::string PresidentialPardonForm::get_target() const
 {
 	return (this->target);
 }

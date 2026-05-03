@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 12:30:19 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/04/29 18:11:43 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/03 17:02:45 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ Form::Form()
 Form::Form(std::string name, int exec_grade, int sign_grade)
 	: name(name), sign_grade(sign_grade), exec_grade(exec_grade), is_signed(false)
 {
+	if (sign_grade < exec_grade)
+	{
+		std::cout << "Sign grade is higher than Exec grade !" << std::endl;
+		throw (this->GradeTooHigh);
+	}
+	if (sign_grade > 150 || exec_grade > 150)
+	{
+		std::cout << "Grade shouldn't be lower than 150 !" << std::endl;
+		throw (this->GradeTooLow);
+	}
+	
+	if (sign_grade <= 0 || exec_grade <= 0)
+	{
+		std::cout << "Grade shouldn't be higher than 1 !" << std::endl; 
+		throw (this->GradeTooHigh);
+	}
 	std::cout << "Form constructor called : " << name << "\nsign_grade :"<<sign_grade<<
 			" | exec_grade :"<<exec_grade<<"\nsigned : " << is_signed << std::endl;
 } // Constructor
@@ -61,17 +77,18 @@ Form::Form(const Form& other) :
 	std::cout << "Form Copy constructor called" << std::endl;
 } // Copy Constructor
 
-void	Form::beSigned(Bureaucrat bureaucrat)
+void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.get_grade() > this->sign_grade)
 	{
-		std::cout <<  bureaucrat << " couldn't sign " << *this << "because their grade is too low !" << std::endl;
-		throw (GradeTooLow);
+		std::cout << "Bureaucrat " << bureaucrat.get_name() <<
+			" couldn't sign form " << this->name << " because their grade is too low !" << std::endl;
+		throw (bureaucrat.GradeTooLow);
 	}
 	else
 	{
 		this->is_signed = true;
-		std::cout << bureaucrat << " signed " << *this << std::endl;
+		std::cout << bureaucrat << " signed " << this->name << std::endl;
 	}
 }
 
@@ -85,4 +102,14 @@ std::ostream& operator<<(std::ostream& os, const Form& obj)
 	else
 		os << "it is not signed.";
 	return os;
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return "Form : Grade too high !";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return "Form : Grade too low !";
 }
