@@ -14,6 +14,7 @@
 #define AForm_HPP
 
 #include "Bureaucrat.hpp"
+
 class AForm
 {
 private:

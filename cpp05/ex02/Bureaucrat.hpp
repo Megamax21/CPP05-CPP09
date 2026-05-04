@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:43 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/03 16:29:13 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/04 15:20:16 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
 #include <fstream>
 
 class AForm; // Forward declaration

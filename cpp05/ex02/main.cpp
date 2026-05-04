@@ -6,17 +6,18 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 12:53:11 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/03 17:59:18 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/04 15:41:22 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
-// #include "RobotomyRequestForm.hpp"
-// #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include <sstream>
 
 int main(void)
 {
+	srand(time(0));
 	std::cout << "cpp05/ex02 test cases !\n\n" << std::endl;
 	{
 		{
@@ -64,7 +65,7 @@ int main(void)
 				Bureaucrat bureaucrat_signer("The Low Grade Signer", 70);
 				Bureaucrat bureaucrat_executer("The Executer", 5);
 				PresidentialPardonForm ppf1("Tomtom");
-				
+
 				ppf1.beSigned(bureaucrat_signer);
 				ppf1.execute(bureaucrat_executer);
 				
@@ -73,6 +74,30 @@ int main(void)
 			{
 				std::cerr << "Unexpected exception: " << e.what() << std::endl;
 			}
+		}
+		{
+			std::cout << "2. Robotomy Request Form\n" << std::endl;
+			
+			std::cout << "Working cases\n\n" << std::endl;
+			std::cout << "Exact grades\n" << std::endl;
+			Bureaucrat bureaucrat_signer("Mr Signer", 25);
+			Bureaucrat bureaucrat_executer("Mr Exec", 5);
+			RobotomyRequestForm rrf1("Timmy");
+
+			rrf1.beSigned(bureaucrat_signer);
+			rrf1.execute(bureaucrat_executer);
+		}
+		{
+			std::cout << "3. Shrubbery Creation Form\n" << std::endl;
+			
+			std::cout << "Working cases\n\n" << std::endl;
+			std::cout << "Exact grades\n" << std::endl;
+			Bureaucrat bureaucrat_signer("Mr Signer", 145);
+			Bureaucrat bureaucrat_executer("Mr Exec", 137);
+			ShrubberyCreationForm scf1("Tabby");
+
+			scf1.beSigned(bureaucrat_signer);
+			scf1.execute(bureaucrat_executer);
 		}
 	}
 	return (0);

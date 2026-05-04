@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 13:45:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/03 17:41:17 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/04 15:52:39 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor)
 			throw (GradeTooLow);
 		}
 		std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl ;
+		std::cout << executor.get_name() << " executed Presidential Pardon Form for target " << this->target << std::endl;
 	}
 	else
 	{
