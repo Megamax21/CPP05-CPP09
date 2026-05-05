@@ -1,4 +1,4 @@
-NAME = bureaucrat
+NAME = scalarconverter
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
@@ -8,11 +8,9 @@ INCDIR = headers
 INCLUDES = -I$(INCDIR)
 
 SRCS = $(SRCDIR)/main.cpp \
-	$(SRCDIR)/Bureaucrat.cpp \
-	$(SRCDIR)/Form.cpp
+	$(SRCDIR)/ScalarConverter.cpp
 
-HEADERS = $(INCDIR)/Bureaucrat.hpp \
-	$(INCDIR)/Form.hpp
+HEADERS = $(INCDIR)/ScalarConverter.hpp
 
 OBJS = $(SRCS:.cpp=.o)
 

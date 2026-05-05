@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 12:53:11 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/03 15:35:44 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/05 21:29:21 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void)
 	{
 		// working tests :
 		Form	form1("Form1", 20, 10);
-		Bureaucrat	bureau_test1("Small Admin", 10);
+		Bureaucrat	bureau_test1("Small Admin", 1);
 		
 		std::cout << "WORKING TEST :\n"<<std::endl;
 		std::cout << "Form 1 is : "<< form1 <<" Bureaucrat : " << bureau_test1 << std::endl << std::endl;

@@ -6,12 +6,12 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:20:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/03 17:19:31 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/05 21:34:03 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "../headers/Bureaucrat.hpp"
+#include "../headers/AForm.hpp"
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.get_name()), grade(other.get_grade())
 {

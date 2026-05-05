@@ -6,13 +6,13 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 12:53:11 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/04 15:41:22 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/05 21:33:55 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include "../headers/PresidentialPardonForm.hpp"
+#include "../headers/RobotomyRequestForm.hpp"
+#include "../headers/ShrubberyCreationForm.hpp"
 #include <sstream>
 
 int main(void)

@@ -3,18 +3,22 @@ NAME = bureaucrat
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRCS =	main.cpp \
-		Bureaucrat.cpp \
-		AForm.cpp \
-		PresidentialPardonForm.cpp\
-		RobotomyRequestForm.cpp\
-		ShrubberyCreationForm.cpp
+SRCDIR = srcs
+INCDIR = headers
+INCLUDES = -I$(INCDIR)
 
-HEADERS = Bureaucrat.hpp \
-			AForm.hpp \
-			PresidentialPardonForm.hpp \
-			RobotomyRequestForm.hpp \
-			ShrubberyCreationForm.hpp
+SRCS = $(SRCDIR)/main.cpp \
+	$(SRCDIR)/Bureaucrat.cpp \
+	$(SRCDIR)/AForm.cpp \
+	$(SRCDIR)/PresidentialPardonForm.cpp \
+	$(SRCDIR)/RobotomyRequestForm.cpp \
+	$(SRCDIR)/ShrubberyCreationForm.cpp
+
+HEADERS = $(INCDIR)/Bureaucrat.hpp \
+	$(INCDIR)/AForm.hpp \
+	$(INCDIR)/PresidentialPardonForm.hpp \
+	$(INCDIR)/RobotomyRequestForm.hpp \
+	$(INCDIR)/ShrubberyCreationForm.hpp
 
 OBJS = $(SRCS:.cpp=.o)
 
