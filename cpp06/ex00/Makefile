@@ -1,4 +1,4 @@
-NAME = scalarconverter
+NAME = convert
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98
@@ -7,10 +7,15 @@ SRCDIR = srcs
 INCDIR = headers
 INCLUDES = -I$(INCDIR)
 
-SRCS = $(SRCDIR)/main.cpp \
-	$(SRCDIR)/ScalarConverter.cpp
+vpath %.cpp $(SRCDIR)
+vpath %.hpp $(INCDIR)
 
-HEADERS = $(INCDIR)/ScalarConverter.hpp
+SRCS = main.cpp \
+		ScalarConverter.cpp \
+		utils_00.cpp
+
+HEADERS = ScalarConverter.hpp \
+			utils.hpp
 
 OBJS = $(SRCS:.cpp=.o)
 

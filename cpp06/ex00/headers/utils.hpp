@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/05 20:06:25 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/06 20:35:12 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/05/06 20:34:45 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/05/11 00:19:37 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-#define SCALARCONVERTER_HPP
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
-#include "utils.hpp"
+#include <string>
+#include <iostream>
+#include <cstdlib>
+#include <limits>
 
-class	ScalarConverter
-{
-	public :
-	static void convert(std::string input);	
-};
+void	ft_print_char(std::string input);
 
 #endif
