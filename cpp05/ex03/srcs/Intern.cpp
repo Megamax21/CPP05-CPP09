@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:14:19 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/12 14:49:07 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/12 20:46:23 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	parseName(std::string name)
 {
-	std::string names[]= {"shrubbery creation", "presidential pardon", "robotomy request"};
+	std::string names[]= {
+		"shrubbery creation",
+		"presidential pardon",
+		"robotomy request" 
+		};
 	for (int i = 0; i < 3; i++)
 	{
 		if (name == names[i])
@@ -39,22 +43,22 @@ AForm	*Intern::makeForm(std::string name, std::string target)
 	switch (parseName(name))
 	{
 	case -1:
-		std::cout << "Provided form name doesn't exist !" << std::endl;
+		std::cout << "Provided form name '"<<name<<"' doesn't exist !"<< std::endl;
 		return(NULL);
 		break;
 	case 0:
 		form = new ShrubberyCreationForm(target); 
-		std::cout << "Intern creates " << form;
+		std::cout << "Intern creates " << *form<< std::endl;
 		return (form);
 		break;
 	case 1:
 		form = new PresidentialPardonForm(target); 
-		std::cout << "Intern creates " << form;
+		std::cout << "Intern creates " << *form<< std::endl;
 		return ((AForm *)form);
 		break;
 	case 2:
 		form = new RobotomyRequestForm(target); 
-		std::cout << "Intern creates " << form;
+		std::cout << "Intern creates " << *form<< std::endl;
 		return ((AForm *)form);
 		break;
 	}

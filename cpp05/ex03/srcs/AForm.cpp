@@ -51,8 +51,8 @@ AForm::AForm()
 		std::cout << "Grade shouldn't be higher than 1 !" << std::endl; 
 		throw (this->GradeTooHigh);
 	}
-	std::cout << "AForm constructor called : " << name << "\nsign_grade :"<<sign_grade<<
-			" | exec_grade :"<<exec_grade<<"\nsigned : " << is_signed << std::endl;
+	std::cout << "AForm constructor called : " << name << " sign : "<<sign_grade<<
+			" | exec_grade : "<<exec_grade<<" | signed : " << is_signed << std::endl;
 }
 
 AForm::AForm(std::string name, int exec_grade, int sign_grade)

@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 13:45:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/12 12:49:12 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/12 16:06:39 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 
 RobotomyRequestForm::RobotomyRequestForm() : 
-	AForm("Robotomy Request", 45, 75), target("Generic Target Name")
+	AForm("Robotomy Request", 45, 72), target("Generic Target Name")
 {
 	std::cout << "Robotomy Request Form Constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) :
-	AForm("Robotomy Request", 45, 75), target(target)
+	AForm("Robotomy Request", 45, 72), target(target)
 {
 	std::cout << "Robotomy Request Form Constructor called" << std::endl;
 }
