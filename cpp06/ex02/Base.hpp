@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.hpp                                          :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:34:45 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/14 13:08:38 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/05/14 19:48:03 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/05/14 20:18:48 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef BASE_HPP
+#define BASE_HPP
 
 #include <string>
 #include <iostream>
 #include <cstdlib>
-#include <limits>
-#include <cmath>
-#include <iomanip>
-#include <sstream>
 
-void	ft_print_char(int input);
-int		ft_print_float(std::string input);
-int		ft_print_int(std::string input);
-float	ft_print_double(std::string input);
-int		parser(std::string input);
+class Base
+{
+public:
+	virtual ~Base() { std::cout << "Destroyed base class" << std::endl; };
+};
 
 #endif

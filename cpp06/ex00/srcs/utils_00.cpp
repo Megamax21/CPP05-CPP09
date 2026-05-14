@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:36:21 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/14 13:03:53 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/05/14 13:08:38 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,18 +140,27 @@ int ft_print_float(std::string input)
 int	ft_print_int(std::string input)
 {
 	std::cout << "int : ";
-	int i = std::atoi(input.c_str());
-	if (i < std::numeric_limits<int>::min()
-		|| i > std::numeric_limits<int>::max())
+	
+	// Remove 'f' or 'd' suffix if present
+	std::string to_convert = input;
+	if (!to_convert.empty() && (to_convert[to_convert.length() - 1] == 'f' 
+		|| to_convert[to_convert.length() - 1] == 'd'))
+	{
+		to_convert = to_convert.substr(0, to_convert.length() - 1);
+	}
+	
+	char *endptr = NULL;
+	long i = std::strtol(to_convert.c_str(), &endptr, 10);
+	
+	// Check if value is within int range
+	if (i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min())
 	{
 		std::cout << "impossible" << std::endl;
 		return (-1);
 	}
-	else
-	{
-		std::cout << i << std::endl;
-		return(i);
-	}
+	
+	std::cout << (int)i << std::endl;
+	return ((int)i);
 }
 
 void ft_print_char(int input)

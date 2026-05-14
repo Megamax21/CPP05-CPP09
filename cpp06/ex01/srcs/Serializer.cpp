@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.hpp                                          :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 20:34:45 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/14 13:08:38 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/05/14 13:15:20 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/05/14 15:59:02 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#include "../headers/Serializer.hpp"
 
-#include <string>
-#include <iostream>
-#include <cstdlib>
-#include <limits>
-#include <cmath>
-#include <iomanip>
-#include <sstream>
-
-void	ft_print_char(int input);
-int		ft_print_float(std::string input);
-int		ft_print_int(std::string input);
-float	ft_print_double(std::string input);
-int		parser(std::string input);
-
-#endif
+uintptr_t	Serializer::serialize(Data* ptr)
+{
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+Data*		Serializer::deserialize(uintptr_t raw)
+{
+	return (reinterpret_cast<Data*>(raw));
+}
