@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:36:21 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/14 13:08:38 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/06/05 10:18:26 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@ int	parser(std::string input)
 {
 	if (input.empty())
 		return (-1);
-	
-	// Single character (non-digit)
 	if (input.length() == 1)
-	{
-		if (isdigit(input[0]))
-			return ((input[0] - '0'));
-		else
-			return ((int)input[0]);
-	}
-	
+		return (static_cast<int>(input[0]));
 	// Check for special float values
 	if (input == "nanf" || input == "nan" || input == "+inff" || input == "-inff" 
 		|| input == "+inf" || input == "-inf")
@@ -33,11 +25,9 @@ int	parser(std::string input)
 	
 	// Remove 'f' or 'd' suffix if present
 	std::string to_validate = input;
-	char suffix = '\0';
 	if (!to_validate.empty() && (to_validate[to_validate.length() - 1] == 'f' 
 		|| to_validate[to_validate.length() - 1] == 'd'))
 	{
-		suffix = to_validate[to_validate.length() - 1];
 		to_validate = to_validate.substr(0, to_validate.length() - 1);
 	}
 	
@@ -103,7 +93,7 @@ float ft_print_double(std::string input)
 		std::cout << "double : " << std::fixed << std::setprecision(15) << f << std::endl;
 	
 	if (f <= std::numeric_limits<float>::max() && f >= std::numeric_limits<float>::min())
-		return ((float)f);
+		return (static_cast<float>(f));
 	else
 		return (-1);
 }
@@ -112,7 +102,7 @@ float ft_print_double(std::string input)
 	otherwise, returns the int value */
 int ft_print_float(std::string input)
 {
-	float f = (float)std::atof(input.c_str());
+	float f = static_cast<float>(std::atof(input.c_str()));
 
 	if (f != f)
 		std::cout << "float : nanf" << std::endl;
@@ -132,7 +122,7 @@ int ft_print_float(std::string input)
 		std::cout << "float : " << std::fixed << std::setprecision(7) << f << "f" << std::endl;
 	
 	if (f <= std::numeric_limits<int>::max() && f >= std::numeric_limits<int>::min())
-		return ((int)f);
+		return (static_cast<int>(f));
 	else
 		return (-1);
 }
@@ -159,8 +149,8 @@ int	ft_print_int(std::string input)
 		return (-1);
 	}
 	
-	std::cout << (int)i << std::endl;
-	return ((int)i);
+	std::cout << static_cast<int>(i) << std::endl;
+	return (static_cast<int>(i));
 }
 
 void ft_print_char(int input)
@@ -172,7 +162,7 @@ void ft_print_char(int input)
 	else
 	{
 		if (isprint(input))
-			std::cout << "char : " << (char)input << std::endl;
+			std::cout << "char : " << static_cast<char>(input) << std::endl;
 		else
 			std::cout << "char : Non displayable" << std::endl;
 	}
