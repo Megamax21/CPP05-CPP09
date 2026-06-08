@@ -3,5 +3,6 @@
 !Makefile
 !*.cpp
 !*.hpp
+!*.tpp
 !.gitignore
 !*.pdf
