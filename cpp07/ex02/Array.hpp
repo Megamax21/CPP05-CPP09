@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 13:37:03 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/05/30 01:15:13 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/06/09 12:10:49 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <exception>
 
 
 template <typename T> 
@@ -24,9 +25,18 @@ private:
 	T* elements;
 	unsigned int array_size;
 public:
+	T& operator[](int index);
+	const T& operator[](int index) const;
+	~Array();
 	Array(); // Creates an empty array
 	Array(unsigned int n); // Creates an array of n elements
 	
+	unsigned int get_size() const;
+	class OutOfBoundException : public std::exception
+	{
+	public:
+		const char* what() const throw();
+	};
 };
 
 #include "Array.tpp"
