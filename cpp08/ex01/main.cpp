@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 13:37:03 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/09 23:53:46 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/06/10 00:46:51 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/06/10 01:37:48 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#include "Span.hpp"
 
-#include <string>
-#include <iostream>
-
-template <typename T>
-void iter(T arr[], const int len, void (*func)(T &))
+int main(void)
 {
-	for (int i = 0; i < len; i++)
-		func(arr[i]);
-};
-
-#endif
+	Span s(15);
+	s.addNumber(18);
+	s.addNumber(2);
+	s.addNumber(4);
+	s.addNumber(5);
+	s.addNumber(3);
+}

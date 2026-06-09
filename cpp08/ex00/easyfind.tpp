@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   easyfind.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 13:37:03 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/09 23:53:46 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/06/09 23:52:47 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/06/10 00:48:18 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
-
-#include <string>
-#include <iostream>
+#include "easyfind.hpp"
 
 template <typename T>
-void iter(T arr[], const int len, void (*func)(T &))
+int len(T *array)
 {
-	for (int i = 0; i < len; i++)
-		func(arr[i]);
-};
+	int i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
 
-#endif
+template <typename T>
+int easyfind(T *haystack, int needle)
+{
+	for (int i = 0 ; i < len(haystack) ; i++)
+	{
+		if (haystack[i] == needle)
+			return (i);
+	}
+	return (-1);
+}

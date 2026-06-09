@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 13:37:03 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/09 23:53:46 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/06/09 23:52:47 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/06/10 01:37:25 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#include "Span.hpp"
 
-#include <string>
-#include <iostream>
-
-template <typename T>
-void iter(T arr[], const int len, void (*func)(T &))
+Span::Span(unsigned int i) : N(i)
 {
-	for (int i = 0; i < len; i++)
-		func(arr[i]);
-};
+	std::cout << "Span constructor called" << std::endl;
+}
 
-#endif
+Span::~Span()
+{
+	std::cout << "Span destructor called" << std::endl;
+}
+
+void Span::addNumber(int i)
+{
+	array.push_back(i);
+	sort(array.begin(), array.end());
+	for (int j = 0 ; j < (int)array.size() ; j++)
+	{
+		std::cout << array[j] << " ";
+	}
+	std::cout << std::endl;
+}

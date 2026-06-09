@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 13:37:03 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/09 23:53:46 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/06/10 01:28:09 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#ifndef SPAN_HPP
+#define SPAN_HPP
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-template <typename T>
-void iter(T arr[], const int len, void (*func)(T &))
+class Span
 {
-	for (int i = 0; i < len; i++)
-		func(arr[i]);
+	private :
+		unsigned int	N;
+		std::vector<int> array;
+	public :
+		Span();
+		Span(unsigned int n);
+		~Span();
+		void	addNumber(int i);
+		int		shortestSpan();
+		int		longestSpan();
 };
 
 #endif

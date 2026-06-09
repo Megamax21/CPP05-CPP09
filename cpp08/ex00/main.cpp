@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/15 13:37:03 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/09 23:53:46 by ml-hote          ###   ########.fr       */
+/*   Created: 2026/06/10 00:46:51 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/06/10 00:48:33 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITER_HPP
-#define ITER_HPP
+#include "easyfind.hpp"
 
-#include <string>
-#include <iostream>
-
-template <typename T>
-void iter(T arr[], const int len, void (*func)(T &))
+int main(void)
 {
-	for (int i = 0; i < len; i++)
-		func(arr[i]);
-};
-
-#endif
+	int a[5] = {1,2,3,4,5};
+	std::cout << easyfind(a,6) << std::endl;
+}
