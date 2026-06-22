@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 23:52:47 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/10 11:12:22 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/06/22 14:16:41 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ Span::Span() : N(0)
 void Span::addNumber(int i)
 {
 	array.push_back(i);
-	sort(array.begin(), array.end());
 }
 
 void Span::print()
@@ -42,6 +41,7 @@ void Span::print()
 
 int Span::shortestSpan()
 {
+	sort(array.begin(), array.end());
 	int a = 0, b = 0;
 	int ss = array[N - 1] - array[0];
 	for (unsigned int i = 1 ; i < N ; i++)
@@ -55,11 +55,11 @@ int Span::shortestSpan()
 		if (ss == 1)
 			return (1);
 	}
-	std::cout << a << " : " << b << std::endl;
 	return (ss);
 }
 
 int Span::longestSpan()
 {
+	sort(array.begin(), array.end());
 	return (array[N - 1] - array[0]);
 }
