@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 12:39:28 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/06/22 14:16:17 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/06/24 10:51:01 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ typename MutantStack<T>::reverse_iterator MutantStack<T>::rend() {
 
 template <typename T>
 typename MutantStack<T>::const_iterator MutantStack<T>::cbegin() const {
-	return this->c.cbegin();
+	return this->c.begin();
 }
 
 template <typename T>
 typename MutantStack<T>::const_iterator MutantStack<T>::cend() const {
-	return this->c.cend();
+	return this->c.end();
 }
