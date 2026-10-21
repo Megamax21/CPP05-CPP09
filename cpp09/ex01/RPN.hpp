@@ -23,5 +23,4 @@ public :
 	int		get_result() const;
 };
 
-// 3 5 8 * 7 + * => 3*((5*8) + 7) = 141
 #endif

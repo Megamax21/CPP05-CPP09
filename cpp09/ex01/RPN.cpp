@@ -19,26 +19,24 @@ bool	RPN::get_error() const
 
 int	RPN::operate(char op)
 {
-	int	temp;
+	int	temp = values.top();
 	switch (op)
 	{
 	case '+':
-		temp = values.top();
 		values.pop();
 		values.top() = values.top() + temp;
 		break;
 	case '-':
-		temp = values.top();
 		values.pop();
 		values.top() = values.top() - temp;
 		break;
 	case '/':
-		temp = values.top();
+		if (temp == 0)
+			return (-2);
 		values.pop();
 		values.top() = values.top() / temp;
 		break;
 	case '*':
-		temp = values.top();
 		values.pop();
 		values.top() = values.top() * temp;
 		break;
@@ -68,8 +66,12 @@ void	RPN::calculate(std::string exp)
 			}
 			if (operate(exp[i]) != 0)
 			{
-				std::cout << "Expression contains an error at index " << i << " : " << exp[i] << std::endl;
+				if (operate(exp[i]) == -1)
+					std::cout << "Expression contains an error at index " << i << " : " << exp[i] << std::endl;
+				if (operate(exp[i]) == -2)
+					std::cout << "Expression contains a division by 0" << std::endl;
 				error_catcher = true;
+				return ;
 			}
 		}
 		i++;

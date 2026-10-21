@@ -203,7 +203,6 @@ void	BitcoinExchange::convertInput(std::string file_name)
 			rewriteInputLine(line);
 			std::cout << " = " << convertLineToValue(line) * checkForValue(convertLineToDate(line)) << std::endl;
 		}
-
 		// Reset the date pickup system line by line
 		date_str.clear();
 		i = 0;
