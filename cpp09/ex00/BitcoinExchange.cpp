@@ -1,4 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/22 00:28:45 by ml-hote           #+#    #+#             */
+/*   Updated: 2026/10/22 00:40:39 by ml-hote          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "BitcoinExchange.hpp"
+
+/*	BitcoinExchange
+	You have to create a program which outputs the value of a certain amount of bitcoin
+	on a certain date.
+	Project was done by using the std::map container in a {<int>date, <float>value} way
+	to stock the entire data file instead of reading from it non stop.
+*/
+
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -6,8 +26,8 @@ BitcoinExchange::BitcoinExchange()
 	std::ifstream btc_database("data.csv");
 	std::string line;
 	// int i = 0;
-	std::getline(btc_database, line);
-	std::getline(btc_database, line);
+	std::getline(btc_database, line); // Skipping first line
+	std::getline(btc_database, line); // Getting to the value
 	datamap.insert(std::map<int, float>::value_type(convertLineToDate(line), convertLineToValue(line)));
 	while (std::getline(btc_database, line))
 	{
@@ -22,6 +42,10 @@ BitcoinExchange::~BitcoinExchange()
 	//std::cout << "Destructor called" << std::endl;
 }
 
+/* convertLineToDate
+	Converts the date to a YYYYDDMM format so that it is easier to work with an int
+	in terms of comparisons. 
+*/
 int	BitcoinExchange::convertLineToDate(std::string line)
 {
 	std::string number_str = "";
