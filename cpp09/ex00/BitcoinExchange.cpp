@@ -2,6 +2,18 @@
 
 BitcoinExchange::BitcoinExchange()
 {
+	// Data map filling 
+	std::ifstream btc_database("data.csv");
+	std::string line;
+	// int i = 0;
+	std::getline(btc_database, line);
+	std::getline(btc_database, line);
+	datamap.insert(std::map<int, float>::value_type(convertLineToDate(line), convertLineToValue(line)));
+	while (std::getline(btc_database, line))
+	{
+		if (datamap.rbegin()->second != convertLineToValue(line))
+			datamap.insert(std::map<int, float>::value_type(convertLineToDate(line), convertLineToValue(line)));
+	}
 	//std::cout << "Constructor called" << std::endl;
 }
 
@@ -39,19 +51,12 @@ float BitcoinExchange::convertLineToValue(std::string line)
 
 float	BitcoinExchange::checkForValue(int date)
 {
-	std::ifstream btc_database("data.csv");
-	std::string line;
-	float last_value = 0;
-	// int i = 0;
-	std::getline(btc_database, line);
-	while (std::getline(btc_database, line))
+	std::ifstream	btc_database("data.csv");
+	std::string		line;
+	for (std::map<int, float>::iterator it = datamap.begin(); it != datamap.end(); ++it)
 	{
-		// std::cout << "test " << i << std::endl;
-		if (date < convertLineToDate(line))
-			return (last_value);
-		// std::cout << "test1 " << i << std::endl;
-		last_value = convertLineToValue(line);
-		// std::cout << "test2 " << i << std::endl;
+		if (it->first >= date)
+			return (it->second);
 	}
 	return (-1);
 }

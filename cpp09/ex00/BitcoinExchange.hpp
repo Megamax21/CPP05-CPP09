@@ -4,11 +4,13 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <map>
 #include <cstdlib>
 
 class BitcoinExchange
 {
+private:
+	std::map<int, float> datamap;
 public:
 	BitcoinExchange();
 	~BitcoinExchange();
