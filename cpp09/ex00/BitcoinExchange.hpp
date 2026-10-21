@@ -19,8 +19,6 @@ public:
 	void	lineErrorPrinting(int i);
 	void	convertInput(std::string file_name);
 	void	rewriteInputLine(std::string line);
-private:
-
 };
 
 #endif

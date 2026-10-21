@@ -123,11 +123,11 @@ void	BitcoinExchange::lineErrorPrinting(int i)
 	switch (i)
 	{
 	case -1:
-		std::cout << "Bad date input" << std::endl;
+		std::cout << "Bad input => ";
 		break;
 
 	case -2:
-		std::cout << "Number isn't positive !" << std::endl;
+		std::cout << "Not a positive number" << std::endl;
 		break;
 
 	case -3:
@@ -147,10 +147,11 @@ void	BitcoinExchange::lineErrorPrinting(int i)
 	}
 }
 
+/* When entering this function we assume that the line argument should be parsed and correct ! */
 void	BitcoinExchange::rewriteInputLine(std::string line)
 {
 	std::string newLine;
-	for (int i = 0 ; i < 11 ; i++)
+	for (int i = 0 ; i < 11 ; i++) // Until the '|' char to pickup the date
 		newLine.push_back(line[i]);
 	newLine.append("=> ");
 	int j = 13;
@@ -163,8 +164,11 @@ void	BitcoinExchange::rewriteInputLine(std::string line)
 }
 void	BitcoinExchange::convertInput(std::string file_name)
 {
-	std::string line;
-	std::ifstream btc_input(file_name.c_str());
+	std::string		line;
+	std::string		date_str = "";
+	std::ifstream	btc_input(file_name.c_str());
+	int 			i = 0;
+
 	if (!btc_input)
 	{
 		std::cout << "Couldn't read file";
@@ -178,12 +182,25 @@ void	BitcoinExchange::convertInput(std::string file_name)
 	}
 	while (std::getline(btc_input, line))
 	{
+		while (line[i] != '|' && line[i])
+		{
+			date_str.push_back(line[i]);
+			i++;
+		}
 		if (parseLine(line) != 0)
+		{
 			lineErrorPrinting(parseLine(line));
+			if (parseLine(line) == -1)
+				std::cout << date_str << std::endl;
+		}
 		else
 		{
 			rewriteInputLine(line);
 			std::cout << " = " << convertLineToValue(line) * checkForValue(convertLineToDate(line)) << std::endl;
 		}
+
+		// Reset the date pickup system line by line
+		date_str.clear();
+		i = 0;
 	}
 }
