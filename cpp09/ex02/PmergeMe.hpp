@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:07:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/10/28 16:22:19 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/10/28 16:35:51 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ public :
 	PmergeMe();
 	PmergeMe(int len, char **input);
 	~PmergeMe();
-	
-	int	test_recursion_vector(std::vector<int> v);
-	void fordJohnson(std::vector<int> &v);
+
+	int	fordJohnson(std::vector<int> v);
 };
 
 #endif
