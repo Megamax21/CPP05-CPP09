@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 00:29:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/10/22 00:29:01 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/10/23 11:06:56 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <stack>
 #include <cstdlib>
 
