@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:07:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/10/28 16:35:51 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/02 15:31:57 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class PmergeMe
 {
 private :
 	std::vector<int>	v_sequence;
+	std::vector<std::vector<int> >	v_a;
+	std::vector<std::vector<int> >	v_b;
 	std::list<int>		l_sequence;
 public :
 	//	Constructors / Destructor

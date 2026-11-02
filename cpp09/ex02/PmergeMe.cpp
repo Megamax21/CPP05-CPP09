@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:50:54 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/10/28 16:37:36 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/02 15:25:38 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,23 @@ PmergeMe::PmergeMe(int len, char **input)
 	fordJohnson(v_sequence);
 }
 
-
-#include <vector>
-#include <map>
-#include <algorithm>
-
 int	PmergeMe::fordJohnson(std::vector<int> v)
 {
+	int	temp = 0;
 	if (v.size() > 3)
 	{
 		fordJohnson(std::vector<int>(v.begin(), v.end() - (v.size() / 2)));
 		fordJohnson(std::vector<int>(v.end() - (v.size() / 2), v.end()));
 	}
-
+	if (v.size() == 2)
+	{
+		if (v[0] > v[1])
+		{
+			temp = v[1];
+			v[1] = v[0];
+			v[0] = temp;
+		}
+	}
 	for (int i = 0; i < (int)v.size(); i++)
 		std::cout << "[" << v[i] << "] ";
 	std::cout << std::endl;
