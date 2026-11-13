@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/22 00:28:45 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/11/02 16:47:14 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/04 16:37:12 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ int	BitcoinExchange::parseLine(std::string line)
 	if (line[4] != '-' || !isdigit(line[5]) || !isdigit(line[6]) || line[7] != '-'
 			|| !isdigit(line[8]) || !isdigit(line[9]) || line[10] != ' ' || line [11] != '|' || line [12] != ' ') // Dirty syntax checker 
 		return (-1);
-	// Month Checking
 	str_value.push_back(line[5]);
 	str_value.push_back(line[6]);
 	// std::cout << str_value;
+	// Month Checking
 	if (atoi(str_value.c_str()) < 1 || atoi(str_value.c_str()) > 12)
 		return (-1);
 	str_value.clear();
