@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:07:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/11/13 18:52:18 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/14 04:39:03 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ public :
 
 	std::vector<int>				vv_to_v(std::vector<std::vector<int> > vv);
 	std::vector<std::vector<int> >	v_to_vv(std::vector<int> v);
-	int								fordJohnson(std::vector<std::vector<int> > v_of_v);
+	int								fordJohnsonVector(std::vector<std::vector<int> >& v_of_v);
 };
 
 #endif

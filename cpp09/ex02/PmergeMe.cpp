@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:50:54 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/11/13 18:57:40 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/14 06:24:51 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,86 @@ void	print_v_of_v(std::vector<std::vector<int> > v_of_v)
 			std::cout << ", ";
 	}
 	std::cout << "]";
+	std::cout << std::endl;
+}
+
+void	print_v_of_v_with_order(std::vector<std::vector<int> > v_of_v, int order)
+{
+	std::cout << "[";
+	int a = 0, b = 0;
+	bool letterswitch = false; // false = a true = b
+	int i = 0;
+	int j = 0;
+	int pair = 0;
+	while (i < (int)v_of_v.size())
+	{
+		if (letterswitch)
+		{
+			std::cout << " b" << b << " ";
+			b++;
+		}
+		else
+		{
+			std::cout << " a" << a << " ";
+			a++;
+		}
+		letterswitch = !letterswitch;
+		std::cout << "[";
+		pair++;
+		while (j < order && i < (int)v_of_v.size())
+		{
+			if (j > 0)
+				std::cout << ", ";
+
+			std::cout << v_of_v[i].back();
+			i++;
+			j++;
+		}
+		j = 0;
+		i++;
+		std::cout << "]";
+		if (pair == 2)
+		{
+			pair = 0;
+			if ((int)v_of_v.size() - i < order)
+				break;
+		}
+	}
+	std::cout << "]" << std::endl;
+	// if ((int)v_of_v.size() - i >= order)
+	// {
+	// 	if (letterswitch)
+	// 	{
+	// 		std::cout << " b" << b << " ";
+	// 		b++;
+	// 	}
+	// 	else
+	// 	{
+	// 		std::cout << " a" << a << " ";
+	// 		a++;
+	// 	}
+	// 	while (j < order)
+	// 	{
+	// 		std::cout << v_of_v[i].back();
+	// 		if (j < order - 1)
+	// 			std::cout << ", ";
+	// 		j++;
+	// 		i++;
+	// 	}
+	// 	std::cout << "]" << std::endl;
+	// }
+	if (i < (int)v_of_v.size())
+	{
+		std::cout << "Incomplete leftovers : [";
+		while (i < (int)v_of_v.size())
+		{
+			std::cout << v_of_v[i].back();
+			if (i < (int)v_of_v.size() - 1)
+				std::cout << ", ";
+			i++;
+		}
+		std::cout << "]" << std::endl;
+	}
 	std::cout << std::endl;
 }
 
@@ -96,53 +176,80 @@ PmergeMe::PmergeMe(int len, char **input)
 		v_sequence.push_back(atoi(input[i]));
 		l_sequence.push_back(atoi(input[i]));
 	}
-	
+
 	// TEST
-	fordJohnson(v_to_vv(v_sequence));
+	std::vector<std::vector<int> > vector_of_vectors = v_to_vv(v_sequence);
+	fordJohnsonVector(vector_of_vectors);
 }
 
-int	PmergeMe::fordJohnson(std::vector<std::vector<int> > v_of_v)
+int	PmergeMe::fordJohnsonVector(std::vector<std::vector<int> >& v_of_v)
 {
 	static int order = 1; // Size of the vectors
-	// std::vector<std::vector<int> > new_vv;
-	// Making pairs :
-	// int v_index = 0;
-	// int j = 0;
-	// if (order == 2) // Sorting pairs before pairing
-	// {
-	// 	while (j < (int)v.size())
-	// 	{
-	// 		j++;
-	// 		if (j == (int)v.size())
-	// 			break;
-	// 		if (v[j] < v[j-1])
-	// 			std::swap(v[j], v[j - 1]);
-	// 		j++;
-	// 	}
-	// }
-	// j = 0;
-	// for (int i = 0; i < (int)v.size(); i++) // Vectors are being created
-	// {
-	// 	new_vv.push_back(std::vector<int>());
-	// 	while (j < order)
-	// 	{
-	// 		new_vv[v_index].push_back(v[i]);
-	// 		if (j < order - 1)
-	// 			i++;
-	// 		j++;
-	// 		if (i == (int)v.size())
-	// 			break;
-	// 	}
-	// 	v_index++;
-	// 	j = 0;
-	// }
+	std::vector<std::vector<int> > new_vv;
+	// Sorting the pairs :
+	if (order == 1)
+	{
+		int sorting = 1;
+		while (sorting <= (int)v_of_v.size()-1)
+		{
+			if (v_of_v[sorting].back() < v_of_v[sorting - 1].back())
+				std::swap(v_of_v[sorting], v_of_v[sorting - 1]);
+			if (sorting + 2 > (int)v_of_v.size() - 1)
+				break;
+			sorting+=2;
+		}
+		new_vv = v_of_v;
+	}
+	else
+	{
+		int	i = 0;
+		int	v_size = 0;
+		int pairing = 0;
+		int	i_vector = 0;
+		new_vv.push_back(std::vector<int>());
+		while (i < (int)(vv_to_v(v_of_v).size()))
+		{
+			// std::cout << "i = " << i << " " << vv_to_v(v_of_v)[i] << std::endl;
+			new_vv[i_vector].push_back(vv_to_v(v_of_v)[i]);
+			i++;
+			v_size++;
+			if (v_size == order)
+			{
+				pairing++;
+				// Sorting the vectors as we go
+				if (pairing == 2)
+				{
+					if ((int)new_vv[i_vector].size() == order)
+					{
+						if (new_vv[i_vector].back() < new_vv[i_vector - 1].back())
+							std::swap(new_vv[i_vector], new_vv[i_vector - 1]);
+					}
+					pairing = 0;
+				}
+				// Create a new vector if not at the end
+				if (i < (int)(vv_to_v(v_of_v).size()))
+					new_vv.push_back(std::vector<int>());
+				v_size = 0;
+				i_vector++;
+			}
+		}
+	}
 	std::cout << "Order : " << order << std::endl;
 	order *= 2;
-	print_v_of_v(v_of_v);
-	if ((int)vv_to_v(v_of_v).size() / 2 > order / 2)
-		fordJohnson(v_of_v);
+	print_v_of_v(new_vv);
+	// Reset of the vector but with the changes
+	//std::cout << "test of 2 functions" << std::endl;
+	v_of_v = v_to_vv(vv_to_v(new_vv));
+	//print_v_of_v(v_of_v);
+	if ((int)vv_to_v(v_of_v).size() / 2 >= order)
+		fordJohnsonVector(v_of_v);
 
-	// order /= 2;
-	// std::cout << "Order : " << order << std::endl;
+	// !!!! START OF THE BACKTRACKING
+
+	if ((int)vv_to_v(v_of_v).size() / 2 < order)
+		std::cout << "\n\nBacktrack is starting here !!\n" << std::endl;
+	order /= 2;
+	std::cout << "Order : " << order << std::endl;
+	print_v_of_v_with_order(v_of_v, order);
 	return (0);
 }

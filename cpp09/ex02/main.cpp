@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:51:00 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/10/28 18:05:55 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/14 04:33:04 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int ac, char **av)
 		std::cout << "input must be : > ./PmergeMe [array of positive integers]" << std::endl;
 		return (-1);
 	}
-	std::cout << av[1] << std::endl;
 	std::cout << "Let's sort some numbers" << std::endl;
 	PmergeMe(ac, av);
 	
