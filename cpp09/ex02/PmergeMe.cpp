@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 11:50:54 by ml-hote           #+#    #+#             */
-/*   Updated: 2026/11/14 06:24:51 by ml-hote          ###   ########.fr       */
+/*   Updated: 2026/11/14 20:20:02 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,82 +34,44 @@ void	print_v_of_v(std::vector<std::vector<int> > v_of_v)
 
 void	print_v_of_v_with_order(std::vector<std::vector<int> > v_of_v, int order)
 {
-	std::cout << "[";
+	std::cout << "[" ;
 	int a = 0, b = 0;
-	bool letterswitch = false; // false = a true = b
-	int i = 0;
-	int j = 0;
-	int pair = 0;
-	while (i < (int)v_of_v.size())
-	{
-		if (letterswitch)
-		{
-			std::cout << " b" << b << " ";
-			b++;
-		}
-		else
-		{
-			std::cout << " a" << a << " ";
-			a++;
-		}
-		letterswitch = !letterswitch;
-		std::cout << "[";
-		pair++;
-		while (j < order && i < (int)v_of_v.size())
-		{
-			if (j > 0)
-				std::cout << ", ";
+	bool a_or_b = false; // false == a && true == b
+	int	i_vector = 0;
 
-			std::cout << v_of_v[i].back();
-			i++;
-			j++;
-		}
-		j = 0;
-		i++;
-		std::cout << "]";
-		if (pair == 2)
-		{
-			pair = 0;
-			if ((int)v_of_v.size() - i < order)
-				break;
-		}
-	}
-	std::cout << "]" << std::endl;
-	// if ((int)v_of_v.size() - i >= order)
-	// {
-	// 	if (letterswitch)
-	// 	{
-	// 		std::cout << " b" << b << " ";
-	// 		b++;
-	// 	}
-	// 	else
-	// 	{
-	// 		std::cout << " a" << a << " ";
-	// 		a++;
-	// 	}
-	// 	while (j < order)
-	// 	{
-	// 		std::cout << v_of_v[i].back();
-	// 		if (j < order - 1)
-	// 			std::cout << ", ";
-	// 		j++;
-	// 		i++;
-	// 	}
-	// 	std::cout << "]" << std::endl;
-	// }
-	if (i < (int)v_of_v.size())
+	while (i_vector < (int)v_of_v.size())
 	{
-		std::cout << "Incomplete leftovers : [";
-		while (i < (int)v_of_v.size())
+		// A or B printing
+		if ((int)v_of_v.size() - i_vector >= order)
 		{
-			std::cout << v_of_v[i].back();
-			if (i < (int)v_of_v.size() - 1)
-				std::cout << ", ";
-			i++;
+			if (a_or_b)
+			{
+				std::cout << "b" << b; 
+				b++;
+			}
+			else
+			{
+				std::cout << "a" << a;
+				a++;
+			}
 		}
-		std::cout << "]" << std::endl;
+		a_or_b = !a_or_b;
+		std::cout << "[";
+		for (int i = 0; i < order; i++)
+		{
+			std::cout << v_of_v[i_vector].back();
+			i_vector++;
+			if (i_vector == (int)v_of_v.size())
+				break;
+			else if (i + 1 < order)
+				std::cout << ", ";
+		}
+		std::cout << "]";
+		if (i_vector < (int)v_of_v.size())
+			std::cout << ", ";
 	}
-	std::cout << std::endl;
+
+	std::cout << "]" << std::endl;
 }
 
 std::vector<int>	PmergeMe::vv_to_v(std::vector<std::vector<int> > vv)
@@ -181,75 +143,151 @@ PmergeMe::PmergeMe(int len, char **input)
 	std::vector<std::vector<int> > vector_of_vectors = v_to_vv(v_sequence);
 	fordJohnsonVector(vector_of_vectors);
 }
-
 int	PmergeMe::fordJohnsonVector(std::vector<std::vector<int> >& v_of_v)
 {
 	static int order = 1; // Size of the vectors
 	std::vector<std::vector<int> > new_vv;
-	// Sorting the pairs :
+
 	if (order == 1)
 	{
-		int sorting = 1;
-		while (sorting <= (int)v_of_v.size()-1)
+		// Sorting the pairs
+		for (int i = 0; i + 1 < (int)v_of_v.size(); i += 2)
 		{
-			if (v_of_v[sorting].back() < v_of_v[sorting - 1].back())
-				std::swap(v_of_v[sorting], v_of_v[sorting - 1]);
-			if (sorting + 2 > (int)v_of_v.size() - 1)
-				break;
-			sorting+=2;
+			if (v_of_v[i + 1].back() < v_of_v[i].back())
+				std::swap(v_of_v[i], v_of_v[i + 1]);
 		}
 		new_vv = v_of_v;
 	}
 	else
 	{
-		int	i = 0;
-		int	v_size = 0;
-		int pairing = 0;
-		int	i_vector = 0;
+		const std::vector<int>	flat = vv_to_v(v_of_v); // flattened ONCE
+		const int				total = (int)flat.size();
+		int						i_vector = 0;
+
 		new_vv.push_back(std::vector<int>());
-		while (i < (int)(vv_to_v(v_of_v).size()))
+		for (int i = 0; i < total; i++)
 		{
-			// std::cout << "i = " << i << " " << vv_to_v(v_of_v)[i] << std::endl;
-			new_vv[i_vector].push_back(vv_to_v(v_of_v)[i]);
-			i++;
-			v_size++;
-			if (v_size == order)
+			new_vv[i_vector].push_back(flat[i]);
+			if ((int)new_vv[i_vector].size() == order)
 			{
-				pairing++;
-				// Sorting the vectors as we go
-				if (pairing == 2)
+				if (i_vector % 2 == 1
+					&& new_vv[i_vector].back() < new_vv[i_vector - 1].back())
+					std::swap(new_vv[i_vector], new_vv[i_vector - 1]);
+				if (i + 1 < total)
 				{
-					if ((int)new_vv[i_vector].size() == order)
-					{
-						if (new_vv[i_vector].back() < new_vv[i_vector - 1].back())
-							std::swap(new_vv[i_vector], new_vv[i_vector - 1]);
-					}
-					pairing = 0;
-				}
-				// Create a new vector if not at the end
-				if (i < (int)(vv_to_v(v_of_v).size()))
 					new_vv.push_back(std::vector<int>());
-				v_size = 0;
-				i_vector++;
+					i_vector++;
+				}
 			}
 		}
 	}
+
 	std::cout << "Order : " << order << std::endl;
 	order *= 2;
 	print_v_of_v(new_vv);
-	// Reset of the vector but with the changes
-	//std::cout << "test of 2 functions" << std::endl;
-	v_of_v = v_to_vv(vv_to_v(new_vv));
-	//print_v_of_v(v_of_v);
-	if ((int)vv_to_v(v_of_v).size() / 2 >= order)
+
+	const std::vector<int>	flat_new = vv_to_v(new_vv);
+	v_of_v = v_to_vv(flat_new);
+
+	if ((int)flat_new.size() / 2 >= order)
 		fordJohnsonVector(v_of_v);
 
 	// !!!! START OF THE BACKTRACKING
-
-	if ((int)vv_to_v(v_of_v).size() / 2 < order)
-		std::cout << "\n\nBacktrack is starting here !!\n" << std::endl;
 	order /= 2;
 	std::cout << "Order : " << order << std::endl;
 	print_v_of_v_with_order(v_of_v, order);
+
+	const std::vector<int>	flat = vv_to_v(v_of_v);
+	const int				n = (int)flat.size();
+	const int				groups = n / order;	// full groups only
+
+	if (groups >= 2)
+	{
+		const int	pairs = groups / 2;
+		const bool	has_odd = (groups % 2 == 1);
+		const int	total_b = pairs + (has_odd ? 1 : 0);
+
+		std::vector<std::vector<int> >	chain;		// b1, a1, a2, ... a_pairs
+		std::vector<int>				chain_ids;	// id of each chain entry (b_i / a_i -> i)
+		std::vector<std::vector<int> >	pend;		// b2, b3, ... (+ odd leftover at the end)
+
+		// Build main chain and pend. Group g = flat[g*order .. (g+1)*order)
+		chain.push_back(std::vector<int>(flat.begin(), flat.begin() + order));						// b1
+		chain_ids.push_back(1);
+		chain.push_back(std::vector<int>(flat.begin() + order, flat.begin() + 2 * order));			// a1
+		chain_ids.push_back(1);
+		for (int i = 2; i <= pairs; i++)
+		{
+			int	b_start = 2 * (i - 1) * order;
+			int	a_start = b_start + order;
+			pend.push_back(std::vector<int>(flat.begin() + b_start, flat.begin() + a_start));		// b_i
+			chain.push_back(std::vector<int>(flat.begin() + a_start, flat.begin() + a_start + order)); // a_i
+			chain_ids.push_back(i);
+		}
+		if (has_odd)
+		{
+			int	start = (groups - 1) * order;
+			pend.push_back(std::vector<int>(flat.begin() + start, flat.begin() + start + order));
+		}
+
+		// Insert pend elements in Jacobsthal order: 3, 5, 11, 21, ...
+		// Inside each block, from the highest index down to the previous bound.
+		int	prev = 1;	// b1 is already in the chain
+		int	j_prev = 1;
+		int	j_cur = 3;
+		while (prev < total_b)
+		{
+			int	cur = (j_cur < total_b) ? j_cur : total_b;
+			for (int i = cur; i > prev; i--)
+			{
+				const std::vector<int>&	b = pend[i - 2];
+				int						value = b.back();
+
+				// Search bound: position of a_i in the chain.
+				// The odd leftover has no a_i, so it searches the whole chain.
+				int	bound = (int)chain.size();
+				if (i <= pairs)
+				{
+					for (int k = 0; k < (int)chain.size(); k++)
+					{
+						if (chain_ids[k] == i && k != 0 && chain_ids[k] == i)
+						{
+							bound = k;
+							break;
+						}
+					}
+				}
+
+				// Binary search in [0, bound)
+				int	low = 0;
+				int	high = bound;
+				while (low < high)
+				{
+					int	mid = low + (high - low) / 2;
+					if (chain[mid].back() < value)
+						low = mid + 1;
+					else
+						high = mid;
+				}
+
+				chain.insert(chain.begin() + low, b);
+				chain_ids.insert(chain_ids.begin() + low, i);
+			}
+			prev = cur;
+			int	next = j_cur + 2 * j_prev;
+			j_prev = j_cur;
+			j_cur = next;
+		}
+
+		// Rebuild: chain groups, then the trailing elements that didn't fill a group
+		std::vector<int>	result;
+		result.reserve(n);
+		for (int i = 0; i < (int)chain.size(); i++)
+			result.insert(result.end(), chain[i].begin(), chain[i].end());
+		result.insert(result.end(), flat.begin() + groups * order, flat.end());
+
+		v_of_v = v_to_vv(result);
+	}
+	print_v_of_v(v_of_v);
 	return (0);
 }
